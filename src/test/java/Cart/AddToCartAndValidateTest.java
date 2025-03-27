@@ -42,11 +42,10 @@ public class AddToCartAndValidateTest {
         WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("framelive")));
         driver.switchTo().frame(iframe);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("contact-link")));
+        WebElement popularProductsTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("All products")));
 
-        WebElement tShirt = driver.findElement(By.linkText("Hummingbird printed t-shirt"));
         new Actions(driver)
-                .scrollToElement(tShirt)
+                .scrollToElement(popularProductsTitle)
                 .pause(Duration.ofSeconds(1))
                 .perform();
 
