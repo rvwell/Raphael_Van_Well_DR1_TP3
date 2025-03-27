@@ -1,5 +1,6 @@
 package Register;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -19,7 +20,7 @@ public class RegisterUserTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private Cookie loginCookie;
+    private Cookie loginCookie; // Variável para armazenar o cookie de login
 
     @BeforeEach
     public void setUp() {
@@ -27,8 +28,15 @@ public class RegisterUserTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
+//    @AfterEach
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
+
     @Test
-    public void testRegisterFormSubmission() throws InterruptedException {
+    public void testRegisterFormSubmission() {
         driver.get("https://demo.prestashop.com/#/en/front");
 
         WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("framelive")));
@@ -40,7 +48,6 @@ public class RegisterUserTest {
         WebElement registerLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("No account? Create one here")));
         registerLink.click();
 
-
         WebElement firstNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("field-firstname")));
         firstNameField.sendKeys("Teste");
 
@@ -49,7 +56,6 @@ public class RegisterUserTest {
 
         WebElement emailField = driver.findElement(By.id("field-email"));
         emailField.sendKeys("teste.usuario@email.com");
-
 
         WebElement passwordField = driver.findElement(By.id("field-password"));
         passwordField.sendKeys("SenhaForte123!");
@@ -68,6 +74,9 @@ public class RegisterUserTest {
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign out")));
         assertTrue(successMessage.isDisplayed(), "A mensagem de sucesso não foi exibida.");
 
+    }
 
+    public Set<Cookie> getLoginCookies() {
+        return driver.manage().getCookies();
     }
 }
