@@ -3,6 +3,7 @@ package Register;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,6 +19,7 @@ public class RegisterUserTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    private Cookie loginCookie;
 
     @BeforeEach
     public void setUp() {
@@ -64,6 +67,7 @@ public class RegisterUserTest {
 
         WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign out")));
         assertTrue(successMessage.isDisplayed(), "A mensagem de sucesso não foi exibida.");
+
 
     }
 }
