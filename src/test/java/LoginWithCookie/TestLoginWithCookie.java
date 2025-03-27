@@ -21,7 +21,6 @@ public class TestLoginWithCookie {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private final String BASE_URL = "https://demo.prestashop.com/#/en/front";
 
     @BeforeEach
     public void setUp() {
@@ -51,7 +50,7 @@ public class TestLoginWithCookie {
             }
         }
 
-        driver.get(BASE_URL);
+        driver.get("https://demo.prestashop.com/#/en/front");
 
         driver.manage().addCookie(prestaShopCookie);
 
