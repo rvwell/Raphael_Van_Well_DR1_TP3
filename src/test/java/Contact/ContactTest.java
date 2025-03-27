@@ -26,7 +26,7 @@ public class ContactTest {
     }
 
     @Test
-    public void testContactFormSubmission() throws InterruptedException {
+    public void testContactFormSubmission() {
         driver.get("https://demo.prestashop.com/#/en/front");
 
         WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("framelive")));
